@@ -1,0 +1,31 @@
+This PHP script (link.php) writes a link to a file (link.txt) from a client machine which can be executed on a server in firefox from a bash script (linkff.sh).
+
+link.sh can also execute the link in firefox automatically, but you'll need to finagle some user settings to make this work.
+
+This is useful if you want to quickly move links from your laptop to an HTPC.
+
+INSTALLATION
+
+Dependencies: apache, php5, firefox
+
+Create the ~/linkapp directory and put link.txt and linkff.sh file in there. If you'd like to create a command for linkff.sh, also create ~/bin and create a link to linkff.sh in ~/bin. Log out and log back in and ~/bin will be added to $PATH.
+
+Put link.php in your apache document root (i.e. /var/www/ or /var/www/html depending on which linux flavor). This is the web page you will access from the client machine to paste the link into the html form.
+
+This is the easiest way to get this working. The form will write the link to link.txt and you can execute it in firefox by running linkff.sh on the server.
+
+However, the second part of the php script is way more awesome and it will automatically execute it in firefox. This is more difficult to make work, and is potentially a security risk (although I made it as secure as possible I think).
+
+1. Add this line to sudoers (sudo visudo) (change {username{ to your user name without curly brackets:
+
+www-data ALL=({username}) NOPASSWD: /usr/bin/firefox
+
+This will let you run firefox as yourself without entering a password.
+
+2. You need to add www-data to your xwindows local server. Run this command:
+
+xhost +local:www-data
+
+After you do this, the php script will automatically execute the firefox command when you send the html form.
+
+I know it's dirty, but it works for me.
