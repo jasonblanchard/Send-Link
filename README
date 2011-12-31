@@ -16,13 +16,13 @@ This is the easiest way to get this working. The form will write the link to lin
 
 However, the second part of the php script is way more awesome and it will automatically execute it in firefox. This is more difficult to make work, and is potentially a security risk (although I made it as secure as possible I think).
 
-1. Add this line to sudoers (sudo visudo) (change {username{ to your user name without curly brackets:
+1. Add this line to sudoers (sudo visudo) (change {username} to your user name without curly brackets:
 
 www-data ALL=({username}) NOPASSWD: /usr/bin/firefox
 
 This will let you run firefox as yourself without entering a password.
 
-2. You need to add www-data to your xwindows local server. Run this command:
+2. You need to add www-data to your xwindows local server so firefox will actually open. Run this command:
 
 xhost +local:www-data
 
