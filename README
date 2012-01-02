@@ -1,8 +1,8 @@
 This PHP script (link.php) writes a Web link URL to a file (link.txt) from a client machine which can be executed on a server in firefox from a bash script (linkff.sh).
 
-link.sh can also execute the link in firefox automatically, but you'll need to finagle some user settings to make this work.
+This is useful if you want to quickly move links from your laptop to an HTPC. When it's installed on the server, the user can go to http://hostname/link.php from a web browser (assuming Apache is configured), and copy-paste a URL into the Web form. You can then view the link on the htpc server.
 
-This is useful if you want to quickly move links from your laptop to an HTPC.
+link.sh can also execute the link in firefox automatically, but you'll need to finagle some user settings to make this work.
 
 INSTALLATION
 
