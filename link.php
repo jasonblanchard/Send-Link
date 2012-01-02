@@ -16,17 +16,20 @@ Enter link URL here to view on the TV:
 
 <?php
 $url=$_POST['url'];
+
 # Change {username} to your username without curly brackets
-$linkfile="/home/{username}/linkapp/link.txt";
+$username= {username};
+
+$linkfile="/home/$username/linkapp/link.txt";
 $fh=fopen($linkfile,'w') or die("Can't open file");
 
 if (isset($url)) {
         #writes it to a file so you can execute it with the linkff.sh script
         fwrite($fh,$url);
         fclose($fh);
-        #Safely executes in firefox. Make sure you have changed the settings for www-data user.
-	# See README for more info. Change {username} to your user name without curly brackets.
-        $escaped_command=escapeshellcmd("sudo -u {username} firefox");
+
+        #Safely executes in firefox. Make sure you have changed the settings for www-data user. See README for more info.
+        $escaped_command=escapeshellcmd("sudo -u $username firefox");
         exec("$escaped_command --display :0.0 $url > /dev/null 2>/dev/null &");
 }
 
